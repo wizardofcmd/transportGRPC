@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.transportSystem.grpc";
+option java_outer_classname = "TicketProto";
+
+service tickets{
+	rpc buyTicket(purchaseInfo) returns (ticketDetails);
+	rpc checkAvailableTickets(trainRoute) returns (stream ticketsAvailable);
+}
+
+message purchaseInfo{
+	string trainRoute = 1;
+}
+
+message ticketDetails{
+	string confirmed = 1;
+}
+
+message trainRoute{
+	string route = 1;
+}
+
+message ticketsAvailable{
+	string ticketDetail = 1;
+}
