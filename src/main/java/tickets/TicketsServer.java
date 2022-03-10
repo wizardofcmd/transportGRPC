@@ -31,7 +31,7 @@ public class TicketsServer{
 					.build()
 					.start();
 
-			System.out.println("Math Server started, listening on " + port);
+			System.out.println("Tickets Server started, listening on " + port);
 
 			server.awaitTermination();
 
