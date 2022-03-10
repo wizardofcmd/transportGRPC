@@ -35,7 +35,7 @@ public class TimetablesService extends timetableImplBase {
 				    LocalDateTime time = LocalDateTime.of(LocalDate.now(), 
 				            LocalTime.of(random.nextInt(24), random.nextInt(60),
 				            random.nextInt(60), random.nextInt(999999999 + 1)));
-				    msg += i + "timetable: " + time.toString() + " ~~~ "; 
+				    msg += i + " timetable: " + time.toString() + " ~~~ "; 
 				}
 				
 				trainTimetables.Builder response = trainTimetables.newBuilder();
