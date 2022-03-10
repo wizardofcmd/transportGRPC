@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "com.transportSystem.grpc";
+option java_outer_classname = "TimetableProto";
+
+service timetable{
+	rpc getTimetables(stream trainRide) returns (trainTimetables) {}
+}
+
+message trainRide{
+	string route = 1;
+}
+
+message trainTimetables {
+	string timetables = 1;
+}

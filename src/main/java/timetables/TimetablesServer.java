@@ -1,4 +1,4 @@
-package tickets;
+package timetables;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -11,27 +11,25 @@ import javax.jmdns.ServiceInfo;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+import timetables.TimetablesService;
 
-import tickets.TicketsService;
-
-public class TicketsServer{
+public class TimetablesServer{
 	public static void main(String[] args) {
-		TicketsServer ticketsServer = new TicketsServer();
-
-		Properties prop = ticketsServer.getProperties();
+		TimetablesServer timetablesServer = new TimetablesServer();
 		
-		ticketsServer.registerService(prop);
+		Properties prop = timetablesServer.getProperties();
+		
+		timetablesServer.registerService(prop);
 		
 		int port = Integer.valueOf(prop.getProperty("service_port"));
-
+		
 		try {
-
 			Server server = ServerBuilder.forPort(port)
-					.addService(new TicketsService())
+					.addService(new TimetablesService())
 					.build()
 					.start();
 
-			System.out.println("Tickets Server started, listening on " + port);
+			System.out.println("Timetables Server started, listening on " + port);
 
 			server.awaitTermination();
 
@@ -43,16 +41,13 @@ public class TicketsServer{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-
 	}
-	
 	
 	private Properties getProperties() {
 		
 		Properties prop = null;		
 		
-		 try (InputStream input = new FileInputStream("src/main/resources/ticket.properties")) {
+		 try (InputStream input = new FileInputStream("src/main/resources/timetables.properties")) {
 
 	            prop = new Properties();
 
@@ -71,7 +66,6 @@ public class TicketsServer{
 	
 		 return prop;
 	}
-	
 	
 	private  void registerService(Properties prop) {
 		
